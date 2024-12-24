@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Days Until Christmas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Days Until Next Christmas</h1>
+    <button onclick="calculateDaysUntilChristmas()">Calculate</button>
+    <div class="output" id="result"></div>
+
+    <script>
+        function calculateDaysUntilChristmas() {
+            const today = new Date();
+            const year = today.getFullYear();
+
+            // Set Christmas date for the current year
+            let christmas = new Date(year, 11, 25); // Month is 0-based, so 11 = December
+
+            // If Christmas has passed this year, set for next year
+            if (today > christmas) {
+                christmas = new Date(year + 1, 11, 25);
+            }
+
+            // Calculate difference in days
+            const diffTime = christmas - today; // Difference in milliseconds
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convert to days
+
+            // Display the result
+            document.getElementById('result').textContent = `Days until next Christmas: ${diffDays}`;
+        }
+    </script>
+</body>
+</html>
