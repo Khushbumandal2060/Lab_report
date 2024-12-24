@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Current Date</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .output {
+            margin: 20px 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <h1>Get Current Date</h1>
+    <button onclick="showCurrentDate()">Show Current Date</button>
+    <div class="output" id="dateOutput"></div>
+
+    <script>
+        function showCurrentDate() {
+            const now = new Date();
+
+            // Get date components
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+            const year = now.getFullYear();
+
+            // Get day and month names
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+            const dayName = days[now.getDay()];
+            const monthName = months[now.getMonth()];
+
+            // Format the date in various styles
+            const formats = `
+                <p><strong>mm-dd-yyyy:</strong> ${month}-${day}-${year}</p>
+                <p><strong>mm/dd/yyyy:</strong> ${month}/${day}/${year}</p>
+                <p><strong>dd-mm-yyyy:</strong> ${day}-${month}-${year}</p>
+                <p><strong>dd/mm/yyyy:</strong> ${day}/${month}/${year}</p>
+                <p><strong>yyyy month date day:</strong> ${year} ${monthName} ${day}, ${dayName}</p>
+            `;
+
+            // Display the formats
+            document.getElementById('dateOutput').innerHTML = formats;
+        }
+    </script>
+</body>
+</html>
