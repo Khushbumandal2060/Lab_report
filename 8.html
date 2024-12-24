@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Two Numbers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        button {
+            cursor: pointer;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Compare Two Numbers</h1>
+    <p>Enter two integers to find the larger and smaller:</p>
+    <input type="number" id="num1" placeholder="Enter first number" />
+    <input type="number" id="num2" placeholder="Enter second number" />
+    <br>
+    <button onclick="compareNumbers()">Compare</button>
+    <div class="output" id="result"></div>
+
+    <script>
+        function compareNumbers() {
+            // Get the input values
+            const num1 = parseInt(document.getElementById('num1').value);
+            const num2 = parseInt(document.getElementById('num2').value);
+
+            // Validate input
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('result').textContent = "Please enter valid integers.";
+                return;
+            }
+
+            // Compare the numbers
+            let larger, smaller;
+            if (num1 > num2) {
+                larger = num1;
+                smaller = num2;
+            } else if (num2 > num1) {
+                larger = num2;
+                smaller = num1;
+            } else {
+                document.getElementById('result').textContent = "Both numbers are equal.";
+                return;
+            }
+
+            // Display the result
+            document.getElementById('result').textContent = 
+                `Larger number: ${larger}, Smaller number: ${smaller}`;
+        }
+    </script>
+</body>
+</html>
