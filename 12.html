@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        button {
+            cursor: pointer;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Check If Input is an Array</h1>
+    <p>Enter a value and click "Check" to see if it is an array:</p>
+    <input type="text" id="inputValue" placeholder="e.g., [1,2,3]" />
+    <br>
+    <button onclick="checkIfArray()">Check</button>
+    <div class="output" id="result"></div>
+
+    <script>
+        function checkIfArray() {
+            // Get the input value
+            const input = document.getElementById('inputValue').value;
+            
+            // Try to parse the input as JSON if it's in array format
+            let parsedInput;
+            try {
+                parsedInput = JSON.parse(input);
+            } catch (e) {
+                document.getElementById('result').textContent = "Invalid input format.";
+                return;
+            }
+
+            // Check if the parsed input is an array
+            if (Array.isArray(parsedInput)) {
+                document.getElementById('result').textContent = "Yes, this is an array.";
+            } else {
+                document.getElementById('result').textContent = "No, this is not an array.";
+            }
+        }
+    </script>
+</body>
+</html>
