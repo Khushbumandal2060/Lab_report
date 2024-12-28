@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Even or Odd Numbers</title>
+    
+</head>
+<body>
+    <h1>Check Even or Odd Numbers</h1>
+    <button onclick="checkEvenOdd()">Check Numbers</button>
+    <div class="output" id="result"></div>
+
+    <script>
+        function checkEvenOdd() {
+            let output = "";
+
+            // Loop from 0 to 15
+            for (let i = 0; i <= 15; i++) {
+                // Check if the number is even or odd
+                if (i % 2 === 0) {
+                    output += `"${i} is even." \n`;
+                } else {
+                    output += `"${i} is odd." \n`;
+                }
+            }
+
+            // Display the result
+            document.getElementById('result').textContent = output;
+        }
+    </script>
+</body>
+</html>
