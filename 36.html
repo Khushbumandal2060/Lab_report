@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Management</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Cookie Management</h2>
+
+<div class="form-group">
+    <label for="key">Enter Key:</label>
+    <input type="text" id="key" placeholder="Enter key">
+</div>
+<div class="form-group">
+    <label for="value">Enter Value:</label>
+    <input type="text" id="value" placeholder="Enter value">
+</div>
+<button onclick="setCookie()">Set Cookie</button>
+
+<div class="form-group">
+    <label for="readKey">Enter Key to Read Cookie:</label>
+    <input type="text" id="readKey" placeholder="Enter key">
+</div>
+<button onclick="readCookie()">Read Cookie</button>
+
+<div class="form-group">
+    <label for="deleteKey">Enter Key to Delete Cookie:</label>
+    <input type="text" id="deleteKey" placeholder="Enter key">
+</div>
+<button onclick="deleteCookie()">Delete Cookie</button>
+
+<button onclick="deleteAllCookies()">Delete All Cookies</button>
+
+<h3>Cookies Table</h3>
+<table id="cookieTable">
+    <thead>
+        <tr>
+            <th>Key</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Cookies will be displayed here -->
+    </tbody>
+</table>
+
+<script>
+// Function to set a cookie with a key and value
+function setCookie() {
+    const key = document.getElementById('key').value;
+    const value = document.getElementById('value').value;
+    if (key && value) {
+        document.cookie = `${key}=${value}; path=/`;
+        alert(`Cookie Set: ${key}=${value}`);
+        displayCookies();
+    } else {
+        alert("Both Key and Value are required.");
+    }
+}
+
+// Function to read a cookie by the key entered
+function readCookie() {
+    const key = document.getElementById('readKey').value;
+    const cookies = document.cookie.split('; ');
+    let cookieValue = null;
+
+    cookies.forEach(cookie => {
+        const [cookieKey, cookieVal] = cookie.split('=');
+        if (cookieKey === key) {
+            cookieValue = cookieVal;
+        }
+    });
+
+    if (cookieValue) {
+        alert(`Cookie Found: ${key}=${cookieValue}`);
+    } else {
+        alert(`Cookie with Key "${key}" not found.`);
+    }
+}
+
+// Function to delete a specific cookie by key
+function deleteCookie() {
+    const key = document.getElementById('deleteKey').value;
+    if (key) {
+        document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+        alert(`Cookie with Key "${key}" has been deleted.`);
+        displayCookies();
+    } else {
+        alert("Key is required to delete a cookie.");
+    }
+}
+
+// Function to delete all cookies
+function deleteAllCookies() {
+    const cookies = document.cookie.split('; ');
+    cookies.forEach(cookie => {
+        const [cookieKey] = cookie.split('=');
+        document.cookie = `${cookieKey}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+    });
+    alert("All cookies have been deleted.");
+    displayCookies();
+}
+
+// Function to display all cookies in a table
+function displayCookies() {
+    const cookies = document.cookie.split('; ');
+    const tableBody = document.getElementById('cookieTable').getElementsByTagName('tbody')[0];
+    tableBody.innerHTML = ""; // Clear existing table rows
+
+    if (cookies.length === 0) {
+        const row = tableBody.insertRow();
+        const cell = row.insertCell(0);
+        cell.colSpan = 2;
+        cell.innerHTML = "No cookies to display.";
+    } else {
+        cookies.forEach(cookie => {
+            const [key, value] = cookie.split('=');
+            const row = tableBody.insertRow();
+            const keyCell = row.insertCell(0);
+            const valueCell = row.insertCell(1);
+            keyCell.textContent = key;
+            valueCell.textContent = value;
+        });
+    }
+}
+
+// Display cookies on page load
+window.onload = displayCookies;
+</script>
+
+</body>
+</html>
