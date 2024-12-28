@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Difference in Days</title>
+    
+</head>
+<body>
+    <h1>Calculate Time Difference in Days</h1>
+    <form id="dateForm">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" required><br>
+        
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" required><br>
+
+        <button type="button" onclick="calculateDateDifference()">Calculate Difference</button>
+    </form>
+
+    <div class="output" id="result"></div>
+
+    <script>
+        function calculateDateDifference() {
+            // Get the dates from the input fields
+            let startDate = document.getElementById("startDate").value;
+            let endDate = document.getElementById("endDate").value;
+
+            // Validate the input dates
+            if (!startDate || !endDate) {
+                alert("Please enter both start and end dates.");
+                return;
+            }
+
+            // Convert the input date strings to Date objects
+            let start = new Date(startDate);
+            let end = new Date(endDate);
+
+            // Calculate the difference in time (in milliseconds)
+            let timeDifference = end - start;
+
+            // Convert milliseconds to days
+            let dayDifference = timeDifference / (1000 * 3600 * 24);
+
+            // Display the result
+            document.getElementById("result").textContent = `The difference between the two dates is: ${Math.abs(dayDifference)} days.`;
+        }
+    </script>
+</body>
+</html>
