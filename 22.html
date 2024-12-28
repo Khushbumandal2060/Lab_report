@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check if String is Blank</title>
+    
+</head>
+<body>
+    <h1>Check if String is Blank</h1>
+    <form id="stringForm">
+        <label for="inputString">Enter a string:</label>
+        <input type="text" id="inputString" placeholder="Type something..." required>
+        <button type="button" onclick="checkIfBlank()">Check</button>
+    </form>
+    <div class="output" id="result"></div>
+
+    <script>
+        function checkIfBlank() {
+            // Get the string from the input field
+            let inputString = document.getElementById("inputString").value;
+
+            // Check if the string is blank
+            if (inputString.trim() === "") {
+                document.getElementById("result").textContent = "The string is blank.";
+            } else {
+                document.getElementById("result").textContent = `The string is not blank. You entered: "${inputString}"`;
+            }
+        }
+    </script>
+</body>
+</html>
