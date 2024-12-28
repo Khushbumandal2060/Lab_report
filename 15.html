@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Choices</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 18px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Display Colors with Ordinal Numbers</h1>
+    <button onclick="displayColors()">Display Colors</button>
+    <div class="output" id="result"></div>
+
+    <script>
+        function displayColors() {
+            // Define the array of colors
+            const colors = ["Blue", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow"];
+
+            // Define the ordinal suffixes
+            const suffixes = ["st", "nd", "rd"];
+
+            // Initialize an empty string to store the output
+            let output = "";
+
+            // Loop through the colors array and add the ordinal number and color
+            for (let i = 0; i < colors.length; i++) {
+                // Determine the correct suffix based on the position
+                let suffix = "th";  // Default suffix
+                if (i === 0) {
+                    suffix = suffixes[0];  // 1st
+                } else if (i === 1) {
+                    suffix = suffixes[1];  // 2nd
+                } else if (i === 2) {
+                    suffix = suffixes[2];  // 3rd
+                }
+
+                // Append the formatted string to the output with double quotes
+                output += `"${i + 1}${suffix} choice is ${colors[i]}."\n`;
+            }
+
+            // Display the output line by line
+            document.getElementById('result').textContent = output;
+        }
+    </script>
+</body>
+</html>
