@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Most Frequent Words</title>
+</head>
+<body>
+    <textarea id="inputText" placeholder="Enter text here"></textarea>
+    <button onclick="tenMostFrequentWords()">Find 10 Most Frequent Words</button>
+    <p id="result26"></p>
+
+    <script>
+        function tenMostFrequentWords() {
+    const text = document.getElementById('inputText').value;
+    const words = text.split(/\s+/);
+    const wordCount = {};
+
+    words.forEach(word => {
+        word = word.toLowerCase().replace(/[^\w\s]/g, ''); // Remove punctuation
+        wordCount[word] = (wordCount[word] || 0) + 1;
+    });
+
+    const sortedWords = Object.entries(wordCount).sort((a, b) => b[1] - a[1]);
+    const mostFrequent = sortedWords.slice(0, 10).map(item => `${item[0]}: ${item[1]}`).join('<br>');
+    
+    document.getElementById('result26').innerHTML = mostFrequent;
+}
+    </script>
+</body>
+</html>
