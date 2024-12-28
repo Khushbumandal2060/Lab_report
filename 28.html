@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asabeneh Yetayeh Challenges</title>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Asabeneh Yetayeh challenges in 2020</h1>
+        <h2>30DaysOfJavaScript Challenge</h2>
+        <ul>
+            <li id="python">Python Challenge Done</li>
+            <li id="js">JavaScript Challenge Ongoing</li>
+            <li id="react">React Challenge Coming</li>
+            <li id="fullstack">FullStack Challenge Coming</li>
+            <li id="dataanalysis">DataAnalysis Challenge Coming</li>
+            <li id="reactnative">ReactNative Challenge Coming</li>
+            <li id="machinelearning">MachineLearning Challenge Coming</li>
+        </ul>
+    </div>
+
+    <script>
+        setInterval(() => {
+    document.querySelector('h1').style.color = `#${Math.floor(Math.random()*16777215).toString(16)}`;
+}, 1000);
+
+setInterval(() => {
+    document.querySelector('ul').style.backgroundColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
+}, 1000);
+
+document.getElementById('python').style.backgroundColor = 'green';
+document.getElementById('js').style.backgroundColor = 'yellow';
+document.getElementById('react').style.backgroundColor = 'red';
+document.getElementById('fullstack').style.backgroundColor = 'red';
+document.getElementById('dataanalysis').style.backgroundColor = 'red';
+document.getElementById('reactnative').style.backgroundColor = 'red';
+document.getElementById('machinelearning').style.backgroundColor = 'red';
+    </script>
+</body>
+</html>
