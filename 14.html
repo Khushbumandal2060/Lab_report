@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Array Items</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sort Array Items</h1>
+    <p>Click the button to sort the array items alphabetically.</p>
+    <button onclick="sortArrayItems()">Sort Array</button>
+    <div class="output" id="result"></div>
+
+    <script>
+        function sortArrayItems() {
+            // Define the array
+            const array = ["Banana", "Apple", "Cherry", "Date"];
+
+            // Sort the array alphabetically
+            const sortedArray = array.sort();
+
+            // Display the sorted array
+            document.getElementById('result').textContent = "Sorted Array: " + sortedArray.join(", ");
+        }
+    </script>
+</body>
+</html>
