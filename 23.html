@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Characters from String</title>
+    
+</head>
+<body>
+    <h1>Remove Characters from String</h1>
+    <form id="stringForm">
+        <label for="inputString">Enter a string:</label><br>
+        <input type="text" id="inputString" placeholder="Enter your string" required><br>
+
+        <label for="startIndex">Start index:</label><br>
+        <input type="number" id="startIndex" placeholder="Enter start index" required><br>
+
+        <label for="numChars">Number of characters to remove:</label><br>
+        <input type="number" id="numChars" placeholder="Enter number of characters" required><br>
+
+        <button type="button" onclick="removeCharacters()">Remove Characters</button>
+    </form>
+
+    <div class="output" id="result"></div>
+
+    <script>
+        function removeCharacters() {
+            // Get input values
+            let inputString = document.getElementById("inputString").value;
+            let startIndex = parseInt(document.getElementById("startIndex").value);
+            let numChars = parseInt(document.getElementById("numChars").value);
+
+            // Validate inputs
+            if (isNaN(startIndex) || isNaN(numChars) || startIndex < 0 || numChars < 0) {
+                alert("Please enter valid start index and number of characters.");
+                return;
+            }
+            if (startIndex >= inputString.length) {
+                alert("Start index is out of range.");
+                return;
+            }
+
+            // Remove specified characters
+            let updatedString = inputString.slice(0, startIndex) + inputString.slice(startIndex + numChars);
+
+            // Display the result
+            document.getElementById("result").textContent = `Updated string: "${updatedString}"`;
+        }
+    </script>
+</body>
+</html>
