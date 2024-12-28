@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Largest Number</title>
+    
+</head>
+<body>
+    <h1>Find the Largest of Five Numbers</h1>
+    <button onclick="findLargestNumber()">Find Largest</button>
+
+    <script>
+        function findLargestNumber() {
+            // Take five numbers as input using prompt
+            let num1 = parseFloat(prompt("Enter the first number:"));
+            let num2 = parseFloat(prompt("Enter the second number:"));
+            let num3 = parseFloat(prompt("Enter the third number:"));
+            let num4 = parseFloat(prompt("Enter the fourth number:"));
+            let num5 = parseFloat(prompt("Enter the fifth number:"));
+
+            // Check for the largest number using conditional statements
+            let largest = num1; // Assume num1 is the largest initially
+
+            if (num2 > largest) {
+                largest = num2;
+            }
+            if (num3 > largest) {
+                largest = num3;
+            }
+            if (num4 > largest) {
+                largest = num4;
+            }
+            if (num5 > largest) {
+                largest = num5;
+            }
+
+            // Display the largest number in an alert box
+            alert("The largest number is: " + largest);
+        }
+    </script>
+</body>
+</html>
