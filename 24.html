@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Object</title>
+</head>
+<body>
+    <button onclick="createDogObject()">Create Dog Object</button>
+    <p id="result24"></p>
+
+    <script >
+        function createDogObject() {
+    let dog = {};
+    dog.name = "Chocolate";
+    dog.legs = 4;
+    dog.color = "Brown";
+    dog.age = 3;
+    dog.bark = function() { return "Woof Woof"; };
+
+    const dogInfo = `
+        Name: ${dog.name}<br>
+        Legs: ${dog.legs}<br>
+        Color: ${dog.color}<br>
+        Age: ${dog.age}<br>
+        Bark: ${dog.bark()}<br>
+    `;
+
+    dog.breed = "Labrador";
+    dog.getDogInfo = function() {
+        return `Breed: ${this.breed}`;
+    };
+
+    document.getElementById('result24').innerHTML = dogInfo + "Breed: " + dog.breed;
+}
+    </script>
+</body>
+</htm
