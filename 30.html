@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countries Table</title>
+</head>
+<body>
+    <table border="1" id="countriesTable">
+        <thead>
+            <tr>
+                <th>Country 1</th>
+                <th>Country 2</th>
+                <th>Country 3</th>
+                <th>Country 4</th>
+                <th>Country 5</th>
+                <th>Country 6</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+    </table>
+    
+    <script >
+        const countries = ["USA", "Canada", "Mexico", "Brazil", "Argentina", "Chile", "France", "Germany", "Italy", "Spain", "Australia", "India", "China", "Russia", "Japan", "South Korea", "South Africa", "Egypt", "Nigeria", "Kenya", "Turkey", "Israel", "Saudi Arabia", "United Kingdom", "Greece", "Portugal", "Poland", "Norway", "Sweden", "Denmark", "Finland", "Iceland", "Belgium", "Netherlands", "Luxembourg", "Switzerland", "Austria", "Belgium", "Norway", "Sweden", "Denmark", "Estonia", "Latvia", "Lithuania", "Finland", "Ireland", "New Zealand", "Philippines", "Vietnam", "Thailand", "Malaysia"];
+
+function createTable() {
+    let tableBody = document.getElementById('tableBody');
+    let row = document.createElement('tr');
+    
+    for (let i = 0; i < countries.length; i++) {
+        let cell = document.createElement('td');
+        cell.textContent = countries[i];
+        row.appendChild(cell);
+
+        // Every 6th country creates a new row
+        if ((i + 1) % 6 === 0) {
+            tableBody.appendChild(row);
+            row = document.createElement('tr');
+        }
+    }
+
+    // Append the last row if needed
+    if (row.children.length > 0) {
+        tableBody.appendChild(row);
+    }
+}
+
+createTable();
+    </script>
+</body>
+</html>
