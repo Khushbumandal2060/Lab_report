@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(247, 243, 243);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: rgb(8, 215, 215);
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-left: 0;
+}
+
+.circle {
+    background-color: white;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    border: 5px solid black;
+    position: relative;
+}
+
+.clock-numbers {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.number {
+    position: absolute;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    transform-origin: center;
+}
+
+/* Apply rotations and adjust positions to center the numbers within the circle */
+.number:nth-child(1) {
+    transform: rotate(0deg) translateY(-90px);
+}
+.number:nth-child(2) {
+    transform: rotate(30deg) translateY(-90px);
+}
+.number:nth-child(3) {
+    transform: rotate(60deg) translateY(-90px);
+}
+.number:nth-child(4) {
+    transform: rotate(90deg) translateY(-90px);
+}
+.number:nth-child(5) {
+    transform: rotate(120deg) translateY(-90px);
+}
+.number:nth-child(6) {
+    transform: rotate(150deg) translateY(-90px);
+}
+.number:nth-child(7) {
+    transform: rotate(180deg) translateY(-90px);
+}
+.number:nth-child(8) {
+    transform: rotate(210deg) translateY(-90px);
+}
+.number:nth-child(9) {
+    transform: rotate(240deg) translateY(-90px);
+}
+.number:nth-child(10) {
+    transform: rotate(270deg) translateY(-90px);
+}
+.number:nth-child(11) {
+    transform: rotate(300deg) translateY(-90px);
+}
+.number:nth-child(12) {
+    transform: rotate(330deg) translateY(-90px);
+}
+.hour-hand, .minute-hand, .second-hand {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform-origin: 50% 100%; /* One end (center of clock) stays fixed */
+    transform: rotate(0deg);
+    transition: transform 0.5s ease-in-out;
+}
+
+.hour-hand {
+    top:18%;
+    width: 4px;
+    height: 60px; /* Adjust length as needed */
+    background-color: black;
+}
+
+.minute-hand {
+    width: 4px;
+    top:13%;
+    height: 70px; /* Adjust length as needed */
+    background-color: darkgray;
+}
+
+.second-hand {
+    width: 2px;
+    top:8%;
+    height: 80px; /* Adjust length as needed */
+    background-color: red;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="circle">
+            <div class="clock-numbers">
+                <div class="number">12</div>
+                <div class="number">1</div>
+                <div class="number">2</div>
+                <div class="number">3</div>
+                <div class="number">4</div>
+                <div class="number">5</div>
+                <div class="number">6</div>
+                <div class="number">7</div>
+                <div class="number">8</div>
+                <div class="number">9</div>
+                <div class="number">10</div>
+                <div class="number">11</div>
+            </div>
+            <div class="hour-hand" id="hour-hand"></div>
+            <div class="minute-hand" id="minute-hand"></div>
+            <div class="second-hand" id="second-hand"></div>
+            
+        </div>
+    </div>
+    <script >
+        function updateClock() {
+    const hourHand = document.getElementById('hour-hand');
+    const minuteHand = document.getElementById('minute-hand');
+    const secondHand = document.getElementById('second-hand');
+
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+
+    // Calculate the rotation for the hands
+    const hourRotation = (hours % 12) * 30 + (minutes / 60) * 30;  // 360 degrees / 12 hours = 30 degrees per hour
+    const minuteRotation = minutes * 6 + (seconds / 60) * 6;  // 360 degrees / 60 minutes = 6 degrees per minute
+    const secondRotation = seconds * 6;  // 360 degrees / 60 seconds = 6 degrees per second
+
+    // Apply rotations to the hands
+    hourHand.style.transform = `rotate(${hourRotation}deg)`;
+    minuteHand.style.transform = `rotate(${minuteRotation}deg)`;
+    secondHand.style.transform = `rotate(${secondRotation}deg)`;
+}
+
+// Update the clock every second
+setInterval(updateClock, 1000);
+
+// Initialize the clock on page load
+updateClock();
+    </script>
+    
+</body>
+</html>
