@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display BCA Description</title>
+    <script>
+        function loadContent() {
+            // Create an XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Set up the request
+            xhr.open("GET", "bca.txt", true);
+
+            // Define what happens on successful data retrieval
+            xhr.onload = function() {
+                if (xhr.status == 200) {
+                    // Display the content of bca.txt file in the div
+                    document.getElementById("content").innerText = xhr.responseText;
+                } else {
+                    // Handle errors
+                    document.getElementById("content").innerText = "Error loading the content.";
+                }
+            };
+
+            // Send the request
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+    <h1>BCA Description</h1>
+    <button onclick="loadContent()">Load Description</button>
+    <div id="content" style="margin-top: 20px; border: 1px solid #ccc; padding: 10px;">
+        <!-- The content of bca.txt will be displayed here -->
+    </div>
+</body>
+</html>
