@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form Validation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    form {
+      width: 400px;
+      margin-left: 100px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #fff;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 6px;
+      margin-top: 0px;
+    }
+
+    label {
+      display: block;
+      margin: 5px 0 3px; /* Reduced margins */
+      font-weight:normal;
+    }
+
+    input,
+    select {
+      width: calc(100% - 10px); /* Adjust width */
+      padding: 3px; /* Reduced padding */
+      margin-bottom: 6px; /* Less space between inputs */
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 7px;
+    }
+
+    button {
+      width: 30%;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .error {
+      color: red;
+      font-size: 12px;
+      margin-top: -5px; /* Reduced gap between input and error */
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <form id="myForm" onsubmit="return validateForm()">
+    <h2>Form Validation</h2>
+    
+    <label for="name">Name:</label>
+    <input type="text" id="name" />
+    <span class="error" id="nameError"></span>
+    
+    <label for="username">Username:</label>
+    <input type="text" id="username" />
+    <span class="error" id="usernameError"></span>
+    
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone" />
+    <span class="error" id="phoneError"></span>
+    
+    <label for="email">Email:</label>
+    <input type="text" id="email" />
+    <span class="error" id="emailError"></span>
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" />
+    <span class="error" id="passwordError"></span>
+    
+    <label for="address">Address:</label>
+    <input type="text" id="address" />
+    <span class="error" id="addressError"></span>
+    
+    <label for="website">Website:</label>
+    <input type="text" id="website" />
+    <span class="error" id="websiteError"></span>
+    
+    <label>Gender:</label>
+    <div class="radio-group">
+      <input type="radio" name="gender" value="Male" id="male" /> Male
+      <input type="radio" name="gender" value="Female" id="female" /> Female
+    </div>
+    <span class="error" id="genderError"></span>
+    
+    <label for="course">Course:</label>
+    <select id="course">
+      <option value="">Select Course</option>
+      <option value="cs">Computer Science</option>
+      <option value="it">Information Technology</option>
+      <option value="se">Software Engineering</option>
+    </select>
+    <span class="error" id="courseError"></span>
+    
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      let isValid = true;
+
+      // Name Validation
+      const name = document.getElementById("name").value;
+      const nameError = document.getElementById("nameError");
+      if (name === "" || /\d/.test(name)) {
+        nameError.textContent = "Name cannot be empty or contain numbers.";
+        isValid = false;
+      } else {
+        nameError.textContent = "";
+      }
+
+      // Username Validation
+      const username = document.getElementById("username").value;
+      const usernameError = document.getElementById("usernameError");
+      if (username === "" || /\s/.test(username) || /[^a-zA-Z0-9_]/.test(username)) {
+        usernameError.textContent = "Invalid username (no spaces or special characters except _)";
+        isValid = false;
+      } else {
+        usernameError.textContent = "";
+      }
+
+      // Phone Validation
+      const phone = document.getElementById("phone").value;
+      const phoneError = document.getElementById("phoneError");
+      if (!/^(98|97|96)\d{8}$/.test(phone)) {
+        phoneError.textContent = "Invalid phone number. Start with 98/97/96 and have 10 digits.";
+        isValid = false;
+      } else {
+        phoneError.textContent = "";
+      }
+
+      // Email Validation
+      const email = document.getElementById("email").value;
+      const emailError = document.getElementById("emailError");
+      if (email === "" || !email.includes("@")) {
+        emailError.textContent = "Enter a valid email address.";
+        isValid = false;
+      } else {
+        emailError.textContent = "";
+      }
+
+      // Password Validation
+      const password = document.getElementById("password").value;
+      const passwordError = document.getElementById("passwordError");
+      const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+      if (!passwordRegex.test(password)) {
+        passwordError.textContent =
+          "Password must be 8+ chars, 1 digit, 1 uppercase, 1 lowercase, 1 special char.";
+        isValid = false;
+      } else {
+        passwordError.textContent = "";
+      }
+
+      // Address Validation
+      const address = document.getElementById("address").value;
+      const addressError = document.getElementById("addressError");
+      if (address === "") {
+        addressError.textContent = "Address cannot be empty.";
+        isValid = false;
+      } else {
+        addressError.textContent = "";
+      }
+
+      // Gender Validation
+      const genderError = document.getElementById("genderError");
+      if (!document.querySelector('input[name="gender"]:checked')) {
+        genderError.textContent = "Select a gender.";
+        isValid = false;
+      } else {
+        genderError.textContent = "";
+      }
+
+      // Course Validation
+      const course = document.getElementById("course").value;
+      const courseError = document.getElementById("courseError");
+      if (course === "") {
+        courseError.textContent = "Select a course.";
+        isValid = false;
+      } else {
+        courseError.textContent = "";
+      }
+
+      return isValid;
+    }
+  </script>
+</body>
+</html>
