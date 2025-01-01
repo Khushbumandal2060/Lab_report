@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Buttons</title>
+  <style>
+    body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 0;
+  }
+  
+  button {
+    padding: 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  #change-bg {
+    background-color: steelblue;
+    color: white;
+  }
+  
+  #change-para-bg {
+    background-color: gold;
+    color: black;
+  }
+  
+  #hide-para {
+    background-color: orange;
+    color: black;
+  }
+  
+  #show-para {
+    background-color: green;
+    color: black;
+  }
+  
+  #increase-font {
+    background-color: purple;
+    color: white;
+  }
+  
+  #decrease-font {
+    background-color: green;
+    color: white;
+  }
+  
+  #reset-font {
+    background-color: red;
+    color: white;
+  }
+  
+  #change-text-color {
+    background-color: navy;
+    color: white;
+  }
+  
+  p {
+    padding: 10px;
+    margin: 20px 0;
+    font-size: 12pt;
+    border: 1px solid #ccc;
+  }
+  
+  </style>
+</head>
+<body>
+  <p id="text">This is a sample paragraph for testing button functionalities.</p>
+  <div class="buttons">
+    <button id="change-bg">Change Background</button>
+    <button id="change-para-bg">Change Paragraph Background</button>
+    <button id="hide-para">Hide Paragraph</button>
+    <button id="show-para">Show Paragraph</button>
+    <button id="increase-font">Increase font Size by 2pt.</button>
+    <button id="decrease-font">Decrease font Size by 2pt.</button>
+    <button id="reset-font">Reset font into 12 pt.</button>
+    <button id="change-text-color">Change Text Color</button>
+  </div>
+  <script>
+    const paragraph = document.getElementById('text');
+
+document.getElementById('change-bg').addEventListener('click', () => {
+  document.body.style.backgroundColor = getRandomColor();
+});
+
+document.getElementById('change-para-bg').addEventListener('click', () => {
+  paragraph.style.backgroundColor = getRandomColor();
+});
+
+document.getElementById('hide-para').addEventListener('click', () => {
+  paragraph.style.display = 'none';
+});
+
+document.getElementById('show-para').addEventListener('click', () => {
+  paragraph.style.display = 'block';
+});
+
+document.getElementById('increase-font').addEventListener('click', () => {
+  let currentSize = parseInt(window.getComputedStyle(paragraph).fontSize);
+  paragraph.style.fontSize = `${currentSize + 2}px`;
+});
+
+document.getElementById('decrease-font').addEventListener('click', () => {
+  let currentSize = parseInt(window.getComputedStyle(paragraph).fontSize);
+  paragraph.style.fontSize = `${currentSize - 2}px`;
+});
+
+document.getElementById('reset-font').addEventListener('click', () => {
+  paragraph.style.fontSize = '12pt';
+});
+
+document.getElementById('change-text-color').addEventListener('click', () => {
+  paragraph.style.color = getRandomColor();
+});
+
+// Function to generate random colors
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+  </script>
+</body>
+</html>
