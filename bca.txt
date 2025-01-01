@@ -1,0 +1,11 @@
+Bachelor of Computer Applications (BCA) is an undergraduate degree program in the field of computer applications. It provides students with the necessary skills to work in the software industry and related fields. The course typically covers topics such as:
+
+- Programming Languages (C, Java, Python, etc.)
+- Database Management Systems (DBMS)
+- Data Structures and Algorithms
+- Computer Networks
+- Web Development (HTML, CSS, JavaScript)
+- Operating Systems
+- Software Engineering
+
+The BCA program is designed to help students understand the fundamentals of computing, develop programming skills, and prepare for careers in IT-related industries. The course duration is typically three years, and it includes practical training, projects, and internships to enhance employability.
