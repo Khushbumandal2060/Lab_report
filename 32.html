@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter with Reset</title>
+    <style>
+        
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+    padding: 20px;
+}
+
+h1 {
+    color: black;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Container for counter and buttons */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Add spacing between elements */
+    padding: 20px;
+}
+
+/* Counter Styled as Button */
+#counter {
+    padding: 15px 40px; /* Padding for larger size */
+    background-color: rgba(240, 151, 218, 0.84); /* Blue background color */
+    color: rgb(7, 7, 7); /* black text color */
+    font-size: 24px; /* Larger font size */
+    font-weight: bold; /* Bold text */
+    text-align: center;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+}
+
+/* Button Styles */
+button {
+    background-color: rgb(36, 126, 36); /* Green background */
+    padding: 15px 25px; /* Bigger size */
+    margin: 0 5px; /* Small spacing between buttons */
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Reset Button */
+#reset {
+    display: block; /* Place on a new line */
+    margin: 10px; /* Center horizontally */
+    margin-left:685px;
+    padding: 10px 40px;
+    background-color: rgb(36, 126, 36); /* Green background */
+    color: white;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+
+    </style>
+</head>
+<div>
+<h1>Counter App</h1>
+<div class="container">
+<button id="increment">+</button>
+<div id="counter">4</div>
+<button id="decrement">-</button>
+</div>
+<button id="reset">Reset</button>
+
+<script>
+    let counterValue = 4;
+
+    // Increment the counter by 1
+    document.getElementById('increment').addEventListener('click', () => {
+        counterValue++;
+        document.getElementById('counter').innerText = counterValue;
+    });
+    document.getElementById('decrement').addEventListener('click', () => {
+        counterValue--;
+        document.getElementById('counter').innerText = counterValue;
+    });
+
+    // Reset the counter to 0
+    document.getElementById('reset').addEventListener('click', () => {
+        counterValue = 4;
+        document.getElementById('counter').innerText = counterValue;
+    });
+</script>
+
+</body>
+</html>
