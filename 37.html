@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Table</title>
+    <style>
+        .container{
+            background-color:azure;
+            width:70%;
+            margin:0;
+        }
+        h1 {
+            text-align: left;
+            font-size: 10px;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            margin:0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin:0;
+            border: 1px solid cadetblue;
+        }
+
+        th, td {
+            padding: 0px;
+            text-align: center;
+            border: 1px solid rgb(82, 80, 80);
+        }
+
+        button {
+            margin: 10px;
+            padding: 5px 5px;
+            cursor: pointer;
+            background-color: #007bff; /* Blue color */
+            color: white;
+            border: none;
+          
+        }
+
+        .trash-btn {
+            cursor: pointer;
+            background-color: red;
+            color: rgb(31, 27, 27);
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        select, input {
+            padding: 5px;
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <!-- Header -->
+    <h1>Duplicate / Clone Rows via Javascript</h1>
+
+    <!-- Table -->
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr>
+                <td>1</td>
+                <td>
+                    <select>
+                        <option value="select">Select Product</option>
+                        <option value="Product A">Product A</option>
+                        <option value="Product B">Product B</option>
+                        <option value="Product C">Product C</option>
+                    </select>
+                </td>
+                <td><input type="number" placeholder="Enter Price"></td>
+                <td><button class="trash-btn">&#128465;</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Add Button -->
+    <div style="text-align: left; margin-left: 2%;">
+        <button id="addRowBtn">Add New</button>
+    </div></div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const tableBody = document.getElementById('tableBody');
+            const addRowBtn = document.getElementById('addRowBtn');
+
+            // Add new row
+            addRowBtn.addEventListener('click', function () {
+                // Create new row
+                const newRow = document.createElement('tr');
+
+                // Serial Number (No)
+                const noCell = document.createElement('td');
+                noCell.textContent = tableBody.rows.length; // Correct the serial number
+                newRow.appendChild(noCell);
+
+                // Product Dropdown
+                const productCell = document.createElement('td');
+                const select = document.createElement('select');
+                select.innerHTML = `
+                    <option value="select">Select Product</option>
+                    <option value="Product A">Product A</option>
+                    <option value="Product B">Product B</option>
+                    <option value="Product C">Product C</option>
+                `;
+                productCell.appendChild(select);
+                newRow.appendChild(productCell);
+
+                // Price Input Field
+                const priceCell = document.createElement('td');
+                const priceInput = document.createElement('input');
+                priceInput.type = 'number';
+                priceInput.placeholder = 'Enter Price';
+                priceCell.appendChild(priceInput);
+                newRow.appendChild(priceCell);
+
+                // Action (Trash Button)
+                const actionCell = document.createElement('td');
+                const trashBtn = document.createElement('button');
+                trashBtn.innerHTML = '&#128465;'; // Trash icon
+                trashBtn.classList.add('trash-btn');
+                actionCell.appendChild(trashBtn);
+                newRow.appendChild(actionCell);
+
+                // Append new row to table
+                tableBody.appendChild(newRow);
+
+                // Add event listener to remove row
+                trashBtn.addEventListener('click', function () {
+                    newRow.remove(); // Remove the clicked row
+                    updateSerialNumbers(); // Update serial numbers after deletion
+                });
+
+                // Update serial numbers
+                updateSerialNumbers();
+            });
+
+            // Update Serial Numbers
+            function updateSerialNumbers() {
+                const rows = tableBody.querySelectorAll('tr');
+                rows.forEach((row, index) => {
+                    row.cells[0].textContent = indexs; // Update serial number
+                });
+            }
+        });
+    </script>
+</body>
+</html>
